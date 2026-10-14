@@ -1,0 +1,1032 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SPH - ServicePhoneHardware</title>
+    <meta name="description" content="SPH menyediakan alat service handphone, sparepart, dan perlengkapan teknisi dengan pelayanan terpercaya di Surabaya dan seluruh Indonesia." />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        :root {
+            --primary: #0ea5e9;
+            --primary-strong: #0284c7;
+            --primary-soft: #e0f2fe;
+            --bg-base: #ffffff;
+            --bg-surface: #f8fafc;
+            --bg-alt: #eef2ff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: rgba(15, 23, 42, 0.08);
+            --shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+            --header-bg: #e0f2fe;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        [data-theme="dark"] {
+            --bg-base: #0f172a;
+            --bg-surface: #111827;
+            --bg-alt: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
+            --border: rgba(148, 163, 184, 0.2);
+            --header-bg: #0b1220;
+            --shadow: 0 18px 40px rgba(2, 6, 23, 0.6);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-main);
+            background: var(--bg-base);
+            color: var(--text-main);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+        section { scroll-margin-top: 90px; }
+
+        .container {
+            width: min(1200px, calc(100% - 32px));
+            margin: 0 auto;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(224, 242, 254, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        [data-theme="dark"] header {
+            background: rgba(11, 18, 32, 0.9);
+        }
+
+        .nav-wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 76px;
+            gap: 24px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            width: fit-content;
+            padding: 0;
+        }
+        .logo img {
+            display: block;
+            width: 220px;
+            height: 44px;
+            object-fit: contain;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+        nav a {
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-main);
+            transition: color 0.25s ease;
+        }
+        nav a:hover { color: var(--primary); }
+        .nav-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.8rem 1.2rem;
+            border-radius: 999px;
+            background: var(--primary);
+            color: #fff;
+            font-weight: 700;
+            box-shadow: 0 8px 20px rgba(14, 165, 233, 0.25);
+        }
+
+        .hero {
+            background: radial-gradient(circle at top left, rgba(14,165,233,0.12), transparent 35%), var(--bg-surface);
+            padding: 72px 0 42px;
+        }
+        .hero-inner {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            align-items: center;
+            gap: 42px;
+        }
+        .hero-main-logo {
+            width: min(100%, 680px);
+            margin-bottom: 24px;
+        }
+        .hero-main-logo img { width: 100%; height: auto; }
+        .eyebrow {
+            display: inline-block;
+            padding: 0.4rem 0.85rem;
+            background: rgba(14,165,233,0.12);
+            color: var(--primary);
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        .hero h1 {
+            font-size: clamp(2.3rem, 5vw, 4.2rem);
+            line-height: 1.08;
+            letter-spacing: -0.04em;
+            margin-bottom: 1rem;
+        }
+        .hero h1 .highlight { color: var(--primary); }
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 620px;
+            margin-bottom: 1.5rem;
+        }
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 1.8rem;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border: none;
+            border-radius: 999px;
+            padding: 0.92rem 1.4rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .btn:hover { transform: translateY(-2px); }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-strong));
+            color: #fff;
+            box-shadow: 0 12px 24px rgba(14, 165, 233, 0.28);
+        }
+        .btn-secondary {
+            background: var(--bg-base);
+            color: var(--text-main);
+            border: 1px solid var(--border);
+        }
+        .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .stat {
+            min-width: 120px;
+        }
+        .stat strong {
+            display: block;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        .stat span {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .hero-visual {
+            position: relative;
+        }
+        .video-window {
+            position: relative;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+        .video-window iframe {
+            width: 100%;
+            min-height: 390px;
+            border: 0;
+            display: block;
+        }
+        .video-window img {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+        }
+        .floating-card {
+            position: absolute;
+            bottom: 20px;
+            left: -18px;
+            padding: 1rem 1.1rem;
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            box-shadow: var(--shadow);
+        }
+        [data-theme="dark"] .floating-card {
+            background: rgba(15,23,42,0.8);
+        }
+        .floating-card strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--primary);
+        }
+
+        .section {
+            padding: 90px 0;
+        }
+        .section-header {
+            margin-bottom: 32px;
+            text-align: center;
+        }
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 12px;
+        }
+        .section-header p {
+            color: var(--text-muted);
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .story {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .story-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+        .story-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        .story-card p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+        .story-image {
+            overflow: hidden;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            min-height: 420px;
+            object-fit: cover;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(180px, 1fr));
+            gap: 20px;
+        }
+        .feature-item {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            box-shadow: 0 10px 22px rgba(15, 23, 42, 0.05);
+        }
+        .feature-item i {
+            display: inline-grid;
+            place-items: center;
+            width: 52px;
+            height: 52px;
+            background: rgba(14, 165, 233, 0.12);
+            color: var(--primary);
+            border-radius: 16px;
+            font-size: 1.3rem;
+            margin-bottom: 0.9rem;
+        }
+        .feature-item strong {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .feature-item span { color: var(--text-muted); font-size: 0.9rem; }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+        }
+        .catalog-more {
+            display: flex;
+            justify-content: center;
+            margin-top: 28px;
+        }
+        .product-featured {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: minmax(240px, 0.75fr) minmax(0, 1.25fr);
+        }
+        .product-featured .product-img {
+            height: 100%;
+            min-height: 360px;
+        }
+        .product-featured .product-img img {
+            object-fit: contain;
+            background: #030b14;
+        }
+        .product-img-placeholder {
+            display: grid;
+            place-content: center;
+            gap: 12px;
+            color: #183b54;
+            text-align: center;
+            background: linear-gradient(145deg, #f0f6f4, #dce9e5);
+        }
+        .product-img-placeholder i { font-size: 5rem; }
+        .product-img-placeholder span { font-weight: 800; }
+        .product-specs {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px 18px;
+            margin: 1rem 0;
+        }
+        .product-specs div { border-bottom: 1px solid var(--border); padding: 0.45rem 0; }
+        .product-specs dt { color: var(--text-muted); font-size: 0.8rem; }
+        .product-specs dd { font-weight: 700; }
+        .product-featured h4 { margin: 1rem 0 0.4rem; }
+        .product-featured ul { padding-left: 1.2rem; color: var(--text-muted); }
+        .product-featured li { margin-bottom: 0.35rem; }
+        .product-card {
+            background: var(--bg-base);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 16px 28px rgba(15, 23, 42, 0.06);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow);
+        }
+        .product-img {
+            height: 190px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #e0f2fe, #f8fafc);
+        }
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .product-body {
+            padding: 1.2rem;
+        }
+        .badge {
+            display: inline-block;
+            padding: 0.35rem 0.65rem;
+            background: rgba(14, 165, 233, 0.1);
+            color: var(--primary);
+            border-radius: 999px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+        .product-body h3 {
+            font-size: 1.15rem;
+            margin-bottom: 0.8rem;
+        }
+        .product-body p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+        .price {
+            font-weight: 800;
+            color: var(--primary);
+        }
+        .mini-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            background: var(--primary);
+            color: white;
+            padding: 0.65rem 0.9rem;
+            border-radius: 10px;
+            font-weight: 700;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+        .mini-btn:hover { transform: translateY(-2px); background: var(--primary-strong); }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(220px, 1fr));
+            gap: 24px;
+        }
+        .info-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 1.5rem;
+        }
+        .info-card i {
+            display: inline-grid;
+            place-items: center;
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            background: rgba(14, 165, 233, 0.12);
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+        .info-card h3 { margin-bottom: 0.5rem; }
+        .info-card p, .info-card a {
+            color: var(--text-muted);
+        }
+
+        .cta-banner {
+            background: linear-gradient(135deg, var(--primary), var(--primary-strong));
+            color: white;
+            border-radius: 24px;
+            padding: 28px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            box-shadow: var(--shadow);
+        }
+        .cta-banner h3 {
+            font-size: clamp(1.4rem, 2vw, 2rem);
+            margin-bottom: 0.2rem;
+        }
+        .cta-banner p {
+            opacity: 0.9;
+        }
+
+        .map-box {
+            overflow: hidden;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+        .map-box iframe {
+            width: 100%;
+            min-height: 420px;
+            border: 0;
+            display: block;
+        }
+        .map-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-top: 16px;
+            color: var(--text-muted);
+        }
+        .map-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            color: var(--primary-strong);
+            font-weight: 700;
+        }
+
+        footer {
+            background: var(--bg-surface);
+            color: var(--text-main);
+            padding: 40px 0 24px;
+        }
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .social-links {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        .social-links a {
+            width: 46px;
+            height: 46px;
+            display: inline-grid;
+            place-items: center;
+            border-radius: 50%;
+            background: var(--bg-alt);
+            color: var(--text-main);
+            transition: background 0.25s ease, transform 0.2s ease;
+        }
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-4px);
+        }
+        .footer-meta {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .customizer-btn {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, var(--primary), var(--primary-strong));
+            color: white;
+            display: grid;
+            place-items: center;
+            font-size: 1.4rem;
+            cursor: pointer;
+            box-shadow: 0 16px 30px rgba(14, 165, 233, 0.28);
+            z-index: 1000;
+            transition: transform 0.25s ease;
+        }
+        .customizer-btn:hover { transform: rotate(45deg); }
+
+        .customizer-panel {
+            position: fixed;
+            top: 0;
+            right: -360px;
+            width: 340px;
+            height: 100vh;
+            background: var(--bg-surface);
+            border-left: 1px solid var(--border);
+            box-shadow: -8px 0 30px rgba(15, 23, 42, 0.14);
+            padding: 24px 20px;
+            transition: right 0.35s ease;
+            z-index: 1001;
+            overflow-y: auto;
+        }
+        .customizer-panel.open { right: 0; }
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.4rem;
+            float: right;
+            cursor: pointer;
+        }
+        .panel-title {
+            font-size: 1.35rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 2px solid var(--primary);
+        }
+        .setting-group { margin-bottom: 1.4rem; }
+        .setting-group label {
+            display: block;
+            margin-bottom: 0.55rem;
+            font-weight: 700;
+        }
+        .setting-group input[type="color"] {
+            width: 100%;
+            height: 44px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+        }
+        .setting-group select {
+            width: 100%;
+            padding: 0.75rem 0.8rem;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--bg-base);
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+
+        .cursor-dot {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 2000;
+            width: 15px;
+            height: 15px;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            background: var(--primary);
+            box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.2), 0 2px 8px rgba(15, 23, 42, 0.25);
+            opacity: 0;
+            pointer-events: none;
+            transform: translate(-50%, -50%) scale(0.65);
+            transition: opacity 0.18s ease, transform 0.18s ease;
+        }
+        .cursor-dot.visible {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        @keyframes fade-rise {
+            from { opacity: 0; transform: translateY(18px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .reveal.is-visible { animation: fade-rise 0.65s ease both; }
+
+        @media (hover: none), (pointer: coarse) {
+            .cursor-dot { display: none; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .cursor-dot { display: none; }
+        }
+
+        @media (max-width: 980px) {
+            .hero-inner, .story, .grid-3 { grid-template-columns: 1fr; }
+            .feature-grid { grid-template-columns: repeat(2, minmax(180px, 1fr)); }
+            .cta-banner { flex-direction: column; align-items: flex-start; }
+        }
+
+        @media (max-width: 760px) {
+            .nav-wrap {
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 14px 0;
+            }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 14px;
+            }
+            .hero { padding-top: 52px; }
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            .product-card { max-width: 420px; margin: 0 auto; }
+            .cta-banner { padding: 22px 18px; }
+            .logo img { width: 190px; height: 38px; }
+            .map-actions { align-items: flex-start; flex-direction: column; }
+            .product-featured { grid-template-columns: 1fr; }
+            .product-featured .product-img { min-height: 240px; }
+            .product-specs { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav-wrap">
+            <a class="logo" href="#beranda" aria-label="Service Phonecell Hub, beranda">
+                <img src="sph-logo.png" alt="Service Phonecell Hub" />
+            </a>
+
+            <nav aria-label="Navigasi utama">
+                <ul>
+                    <li><a href="#beranda">Beranda</a></li>
+                    <li><a href="#katalog">Katalog</a></li>
+                    <li><a href="#about">Tentang</a></li>
+                    <li><a href="#kontak">Kontak</a></li>
+                </ul>
+            </nav>
+
+            <a class="nav-cta" href="https://wa.me/message/UX5KWWIQ62UHC1" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-whatsapp"></i> Chat WhatsApp
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <section id="beranda" class="hero">
+            <div class="container hero-inner">
+                <div class="hero-copy">
+                    <div class="hero-main-logo">
+                        <img src="sph-kop.png" alt="SPH Online, Onglai Group" />
+                    </div>
+                    <div class="eyebrow">ServicePhoneHardware</div>
+                    <h1>Alat service HP terbaik untuk <span class="highlight">teknisi modern</span></h1>
+                    <p>
+                        SPH hadir sebagai mitra terpercaya teknisi handphone dengan berbagai alat service profesional,
+                        peralatan kerja berkualitas, dan dukungan pengiriman ke seluruh Indonesia.
+                    </p>
+
+                    <div class="actions">
+                        <a class="btn btn-primary" href="#katalog"><i class="fas fa-shopping-bag"></i> Lihat Produk</a>
+                        <a class="btn btn-secondary" href="#kontak"><i class="fas fa-map-marker-alt"></i> Kunjungi Toko</a>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <strong>+3K</strong>
+                            <span>Produk terjual</span>
+                        </div>
+                        <div class="stat">
+                            <strong>5+</strong>
+                            <span>Tahun pengalaman</span>
+                        </div>
+                        <div class="stat">
+                            <strong>24/7</strong>
+                            <span>Chat support</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="video-window">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=85" alt="Komponen elektronik untuk pekerjaan reparasi handphone" />
+                    </div>
+                    <div class="floating-card">
+                        <strong>Lokasi Toko</strong>
+                        <span>WTC Surabaya Lt.4 No.4020</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Kenapa teknisi memilih SPH?</h2>
+                    <p>Kami membangun reputasi dengan fokus pada kualitas produk, kejujuran, dan pelayanan yang nyaman bagi para master teknisi.</p>
+                </div>
+
+                <div class="story">
+                    <div class="story-card">
+                        <h3>SPH berdiri sejak 2020</h3>
+                        <p>Kami dimulai dari bisnis online dan berkembang menjadi toko offline yang dipercaya banyak teknisi handphone di Indonesia.</p>
+                        <p>Seiring waktu, kami membuka cabang baru dan terus menghadirkan alat kerja yang menunjang efisiensi kerja dan kualitas hasil service.</p>
+                        <p><strong>Komitmen kami:</strong> kenyamanan, transparansi, dan kepercayaan untuk para pengguna alat service.</p>
+                    </div>
+
+                    <div class="story-image">
+                        <img src="sph-toko.jpg" alt="Tampak depan toko SPH Service Phonecell Hub di WTC Surabaya" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="background: var(--bg-surface);">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Keunggulan kami</h2>
+                </div>
+
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-clock"></i>
+                        <strong>Jam Operasional</strong>
+                        <span>10.00 - 21.00 WIB</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-box-open"></i>
+                        <strong>Kualitas Barang</strong>
+                        <span>Reposisi & upgrade tools</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-truck"></i>
+                        <strong>Pengiriman</strong>
+                        <span>Antar ke seluruh Indonesia</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <strong>Garansi</strong>
+                        <span>Garansi 1 tahun service</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-users"></i>
+                        <strong>Trusted</strong>
+                        <span>Dipercaya teknisi handphone</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="katalog" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Katalog produk unggulan</h2>
+                    <p>Beragam produk andalan untuk kebutuhan reparasi, maintenance, dan perawatan handphone.</p>
+                </div>
+
+                <div class="catalog-grid">
+                    <article class="product-card product-featured">
+                        <div class="product-img">
+                            <img src="z75.jpg" alt="Mikroskop stereo ONGLAI Z75 Glare Shield untuk pekerjaan presisi" />
+                        </div>
+                        <div class="product-body">
+                            <span class="badge">ONGLAI · Original</span>
+                            <h3>Mikroskop Stereo Trinokular Zoom Sinkron ONGLAI Z75 Abu-Abu</h3>
+                            <p>Mikroskop stereo profesional untuk teknisi dan pekerjaan inspeksi elektronik presisi. Rentang zoom kontinu membantu berpindah dari bidang pandang luas ke detail halus dengan stabil.</p>
+
+                            <dl class="product-specs">
+                                <div><dt>Lensa okuler</dt><dd>PL 10X27 mm</dd></div>
+                                <div><dt>Pembesaran</dt><dd>0.75X – 7.5X</dd></div>
+                                <div><dt>Antarmuka trinokular</dt><dd>Standar adapter CVT 0.5X</dd></div>
+                                <div><dt>Ukuran</dt><dd>380 × 250 mm</dd></div>
+                                <div><dt>Berat bersih</dt><dd>4.7 kg</dd></div>
+                                <div><dt>Basis mikroskop</dt><dd>B3</dd></div>
+                            </dl>
+
+                            <h4>Fitur</h4>
+                            <ul>
+                                <li>Zoom kontinu dengan pembesaran halus dan presisi.</li>
+                                <li>Optik definisi tinggi, tajam, jernih, dan berwarna alami.</li>
+                                <li>Sistem fokus presisi untuk observasi stabil dan detail.</li>
+                                <li>Konstruksi kokoh, anti-getar, dengan basis logam besar.</li>
+                            </ul>
+
+                            <h4>Aplikasi</h4>
+                            <p>Perbaikan elektronik, inspeksi industri, rekayasa presisi, dan penggunaan profesional.</p>
+                            <div class="product-meta">
+                                <span class="price">Tanya harga</span>
+                                <a class="mini-btn" href="https://wa.me/message/UX5KWWIQ62UHC1" target="_blank" rel="noopener noreferrer" aria-label="Tanya stok dan harga ONGLAI Z75 melalui WhatsApp">Tanya stok &amp; harga <i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+                <div class="catalog-more">
+                    <a class="btn btn-primary" href="https://shopee.co.id/servicephonecellhub" target="_blank" rel="noopener noreferrer">CEK YANG LAIN DISINI <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="background: var(--bg-surface);">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Hubungi kami</h2>
+                    <p>Siap membantu kebutuhan alat service Anda, baik untuk toko maupun kebutuhan pribadi teknisi.</p>
+                </div>
+
+                <div class="grid-3">
+                    <div class="info-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Lokasi</h3>
+                        <p>SPH Service Phonecell Hub, Surabaya</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-phone-alt"></i>
+                        <h3>Kontak</h3>
+                        <a href="https://wa.me/message/UX5KWWIQ62UHC1" target="_blank" rel="noopener noreferrer">Chat melalui WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="cta-banner">
+                    <div>
+                        <h3>Gabung member sekarang!</h3>
+                        <p>Free solder dan baju khusus member untuk pembelian tertentu.</p>
+                    </div>
+                    <a class="btn btn-secondary" href="https://wa.me/message/UX5KWWIQ62UHC1" target="_blank" rel="noopener noreferrer" style="background: white; color: var(--primary); border: none;">Daftar Member</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="kontak" class="section" style="padding-top: 0;">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Temukan kami di Surabaya</h2>
+                </div>
+                <div class="map-box">
+                    <iframe src="https://www.google.com/maps?q=-7.2630706,112.7479367&z=17&output=embed" title="Peta SPH Service Phonecell Hub" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="map-actions">
+                    <span>SPH Service Phonecell Hub, Surabaya</span>
+                    <a class="map-link" href="https://www.google.com/maps/place/SPH+Service+Phonecell+Hub/@-7.2630653,112.7453618,17z/data=!3m2!4b1!5s0x2dd7f963cd4786df:0xa004af1effbbeae4!4m6!3m5!1s0x2dd7f97e1f8a1bbf:0x6850ab0596501df4!8m2!3d-7.2630706!4d112.7479367!16s%2Fg%2F11wxmv3b1s?hl=id&entry=ttu&g_ep=EgoyMDI2MTAxMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer"><i class="fas fa-directions" aria-hidden="true"></i> Buka petunjuk arah</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-inner">
+            <div>
+                <a class="logo" href="#beranda" aria-label="Service Phonecell Hub, kembali ke beranda" style="margin-bottom: 10px;">
+                    <img src="sph-logo.png" alt="Service Phonecell Hub" />
+                </a>
+                <div class="footer-meta">© 2024 SPH - ServicePhoneHardware. Semua hak cipta dilindungi.</div>
+            </div>
+
+            <div class="social-links" aria-label="Sosial media SPH">
+                <a href="https://wa.me/message/UX5KWWIQ62UHC1" target="_blank" rel="noopener noreferrer" title="WhatsApp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/sphservicephonecellhub?stkn=MWZzcWU2d3dpd3M2cQ%3D%3D&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@servicephonecellhub?_r=1&amp;_t=ZS-9AIPEKPxxjB" target="_blank" rel="noopener noreferrer" title="TikTok" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.facebook.com/share/1JMhCw4JAC/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://youtube.com/@servicephonecellhub?si=9nBEJfYu-myqBkHd" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://shopee.co.id/servicephonecellhub" target="_blank" rel="noopener noreferrer" title="Shopee" aria-label="Shopee"><i class="fas fa-shopping-bag"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <button class="customizer-btn" id="openPanel" aria-label="Buka pengaturan UI">
+        <i class="fas fa-cog"></i>
+    </button>
+
+    <aside class="customizer-panel" id="uiPanel" aria-label="Panel customizer">
+        <button class="close-btn" id="closePanel" aria-label="Tutup panel">
+            <i class="fas fa-times"></i>
+        </button>
+        <h2 class="panel-title">Pengaturan UI</h2>
+
+        <div class="setting-group">
+            <label for="themeToggle">Tema layar</label>
+            <select id="themeToggle">
+                <option value="light">Terang</option>
+                <option value="dark">Gelap</option>
+            </select>
+        </div>
+
+        <div class="setting-group">
+            <label for="colorPicker">Warna utama</label>
+            <input type="color" id="colorPicker" value="#0ea5e9" />
+        </div>
+
+        <div class="setting-group">
+            <label for="fontSelect">Jenis huruf</label>
+            <select id="fontSelect">
+                <option value="'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Modern</option>
+                <option value="Georgia, serif">Klasik</option>
+                <option value="'Courier New', Courier, monospace">Monospace</option>
+            </select>
+        </div>
+    </aside>
+
+    <span class="cursor-dot" id="cursorDot" aria-hidden="true"></span>
+
+    <script>
+        const root = document.documentElement;
+        const openBtn = document.getElementById('openPanel');
+        const closeBtn = document.getElementById('closePanel');
+        const panel = document.getElementById('uiPanel');
+        const themeToggle = document.getElementById('themeToggle');
+        const colorPicker = document.getElementById('colorPicker');
+        const fontSelect = document.getElementById('fontSelect');
+        const cursorDot = document.getElementById('cursorDot');
+
+        openBtn.addEventListener('click', () => panel.classList.add('open'));
+        closeBtn.addEventListener('click', () => panel.classList.remove('open'));
+
+        themeToggle.addEventListener('change', (event) => {
+            if (event.target.value === 'dark') {
+                root.setAttribute('data-theme', 'dark');
+            } else {
+                root.removeAttribute('data-theme');
+            }
+        });
+
+        colorPicker.addEventListener('input', (event) => {
+            root.style.setProperty('--primary', event.target.value);
+            root.style.setProperty('--primary-strong', event.target.value);
+        });
+
+        fontSelect.addEventListener('change', (event) => {
+            root.style.setProperty('--font-main', event.target.value);
+        });
+
+        if (window.matchMedia('(hover: hover) and (pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            let cursorFrame = 0;
+            window.addEventListener('pointermove', (event) => {
+                if (cursorFrame) cancelAnimationFrame(cursorFrame);
+                cursorFrame = requestAnimationFrame(() => {
+                    cursorDot.style.left = `${event.clientX}px`;
+                    cursorDot.style.top = `${event.clientY}px`;
+                    cursorDot.classList.add('visible');
+                    cursorFrame = 0;
+                });
+            });
+            document.documentElement.addEventListener('pointerleave', () => cursorDot.classList.remove('visible'));
+        }
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll('.section-header, .story-card, .story-image, .feature-item, .product-card, .info-card, .cta-banner, .map-box').forEach((element) => {
+            element.classList.add('reveal');
+            revealObserver.observe(element);
+        });
+    </script>
+</body>
+</html>
