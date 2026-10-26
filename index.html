@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SPH - ServicePhonecellhub
+    <title>SPH Service Phonecell Hub</title>
     <meta name="description" content="SPH menyediakan alat service handphone, sparepart, dan perlengkapan teknisi dengan pelayanan terpercaya di Surabaya dan seluruh Indonesia." />
+    <link rel="icon" type="image/png" href="sph-kop.png" />
+    <link rel="shortcut icon" type="image/png" href="sph-kop.png" />
+    <link rel="apple-touch-icon" href="sph-kop.png" />
+    <meta property="og:image" content="sph-kop.png" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <style>
         :root {
@@ -23,14 +27,17 @@
         }
 
         [data-theme="dark"] {
-            --bg-base: #0f172a;
-            --bg-surface: #111827;
-            --bg-alt: #1e293b;
+            --primary: #7dd3fc;
+            --primary-strong: #38bdf8;
+            --primary-soft: rgba(125, 211, 252, 0.12);
+            --bg-base: #020817;
+            --bg-surface: #0f172a;
+            --bg-alt: #111827;
             --text-main: #f8fafc;
             --text-muted: #cbd5e1;
-            --border: rgba(148, 163, 184, 0.2);
-            --header-bg: #0b1220;
-            --shadow: 0 18px 40px rgba(2, 6, 23, 0.6);
+            --border: rgba(148, 163, 184, 0.25);
+            --header-bg: #020d1c;
+            --shadow: 0 18px 40px rgba(2, 6, 23, 0.7);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -75,6 +82,7 @@
         .logo {
             display: flex;
             align-items: center;
+            position: relative;
             width: fit-content;
             padding: 0;
         }
@@ -84,6 +92,19 @@
             height: 44px;
             object-fit: contain;
         }
+        .theme-logo-light,
+        .theme-logo-dark { transition: opacity 0.35s ease; }
+        .logo .theme-logo-dark,
+        .hero-main-logo .theme-logo-dark {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+        }
+        .hero-main-logo .theme-logo-dark { height: 100%; object-fit: contain; }
+        [data-theme="dark"] .logo .theme-logo-light,
+        [data-theme="dark"] .hero-main-logo .theme-logo-light { opacity: 0; }
+        [data-theme="dark"] .logo .theme-logo-dark,
+        [data-theme="dark"] .hero-main-logo .theme-logo-dark { opacity: 1; }
         nav ul {
             list-style: none;
             display: flex;
@@ -122,6 +143,7 @@
             gap: 42px;
         }
         .hero-main-logo {
+            position: relative;
             width: min(100%, 680px);
             margin-bottom: 24px;
         }
@@ -179,6 +201,11 @@
             background: var(--bg-base);
             color: var(--text-main);
             border: 1px solid var(--border);
+        }
+        [data-theme="dark"] .btn-secondary {
+            background: rgba(15, 23, 42, 0.9);
+            color: var(--text-main);
+            border-color: rgba(148, 163, 184, 0.35);
         }
         .hero-stats {
             display: flex;
@@ -692,7 +719,8 @@
     <header>
         <div class="container nav-wrap">
             <a class="logo" href="#beranda" aria-label="Service Phonecell Hub, beranda">
-                <img src="sph-logo.png" alt="Service Phonecell Hub" />
+                <img class="theme-logo-light" src="sph-kop.png" alt="SPH Service Phonecell Hub" />
+                <img class="theme-logo-dark" src="sph-kop-dark.png" alt="" aria-hidden="true" />
             </a>
 
             <nav aria-label="Navigasi utama">
@@ -715,7 +743,8 @@
             <div class="container hero-inner">
                 <div class="hero-copy">
                     <div class="hero-main-logo">
-                        <img src="sph-kop.png" alt="SPH Online, Onglai Group" />
+                        <img class="theme-logo-light" src="sph-kop.png" alt="SPH Online, Onglai Group" />
+                        <img class="theme-logo-dark" src="sph-kop-dark.png" alt="" aria-hidden="true" />
                     </div>
                     <div class="eyebrow">ServicePhoneHardware</div>
                     <h1>Alat service HP terbaik untuk <span class="highlight">teknisi modern</span></h1>
@@ -919,7 +948,8 @@
         <div class="container footer-inner">
             <div>
                 <a class="logo" href="#beranda" aria-label="Service Phonecell Hub, kembali ke beranda" style="margin-bottom: 10px;">
-                    <img src="sph-logo.png" alt="Service Phonecell Hub" />
+                    <img class="theme-logo-light" src="sph-kop.png" alt="SPH Service Phonecell Hub" />
+                    <img class="theme-logo-dark" src="sph-kop-dark.png" alt="" aria-hidden="true" />
                 </a>
                 <div class="footer-meta">© 2024 SPH - ServicePhoneHardware. Semua hak cipta dilindungi.</div>
             </div>
@@ -983,12 +1013,17 @@
         openBtn.addEventListener('click', () => panel.classList.add('open'));
         closeBtn.addEventListener('click', () => panel.classList.remove('open'));
 
-        themeToggle.addEventListener('change', (event) => {
-            if (event.target.value === 'dark') {
+        const applyTheme = (value) => {
+            if (value === 'dark') {
                 root.setAttribute('data-theme', 'dark');
             } else {
                 root.removeAttribute('data-theme');
             }
+            themeToggle.value = value;
+        };
+
+        themeToggle.addEventListener('change', (event) => {
+            applyTheme(event.target.value);
         });
 
         colorPicker.addEventListener('input', (event) => {
