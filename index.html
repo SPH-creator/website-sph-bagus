@@ -134,43 +134,62 @@
         }
 
         .hero {
-            background: radial-gradient(circle at top left, rgba(14,165,233,0.12), transparent 35%), var(--bg-surface);
-            padding: 72px 0 42px;
+            position: relative;
+            min-height: 620px;
+            display: grid;
+            align-items: center;
+            overflow: hidden;
+            color: #fff;
+            background:
+                linear-gradient(90deg, rgba(3,9,20,0.96) 0%, rgba(3,9,20,0.82) 55%, rgba(3,9,20,0.52) 100%),
+                url("sph-toko.jpg") center/cover;
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 48%;
+            height: 100%;
+            right: -18%;
+            top: 0;
+            background: linear-gradient(135deg, rgba(14,165,233,0.58), rgba(30,64,175,0.12) 55%, transparent);
+            transform: skewX(-12deg);
+            pointer-events: none;
         }
         .hero-inner {
+            position: relative;
+            z-index: 1;
             display: grid;
-            grid-template-columns: 1.15fr 0.85fr;
+            grid-template-columns: 1fr 0.9fr;
             align-items: center;
-            gap: 42px;
+            gap: 48px;
+            padding: 72px 0;
         }
         .hero-main-logo {
             position: relative;
-            width: min(100%, 680px);
-            margin-bottom: 24px;
+            width: min(100%, 430px);
+            margin-bottom: 22px;
         }
         .hero-main-logo img { width: 100%; height: auto; }
         .eyebrow {
             display: inline-block;
-            padding: 0.4rem 0.85rem;
-            background: rgba(14,165,233,0.12);
-            color: var(--primary);
-            border-radius: 999px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.08em;
+            margin-bottom: 14px;
+            color: #7dd3fc;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-            margin-bottom: 1rem;
         }
         .hero h1 {
-            font-size: clamp(2.3rem, 5vw, 4.2rem);
-            line-height: 1.08;
-            letter-spacing: -0.04em;
-            margin-bottom: 1rem;
+            max-width: 760px;
+            font-size: clamp(3rem, 6vw, 6rem);
+            line-height: 0.98;
+            letter-spacing: 0;
+            margin-bottom: 18px;
         }
-        .hero h1 .highlight { color: var(--primary); }
+        .hero h1 .highlight { color: #fff; }
         .hero p {
-            color: var(--text-muted);
-            font-size: 1.05rem;
+            color: rgba(255,255,255,0.78);
+            font-size: 1.08rem;
             max-width: 620px;
             margin-bottom: 1.5rem;
         }
@@ -228,44 +247,44 @@
 
         .hero-visual {
             position: relative;
+            min-height: 390px;
         }
         .video-window {
-            position: relative;
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            border-radius: 28px;
+            position: absolute;
+            inset: 0 0 0 8%;
             overflow: hidden;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border);
-        }
-        .video-window iframe {
-            width: 100%;
-            min-height: 390px;
-            border: 0;
-            display: block;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.96);
+            box-shadow: 0 28px 80px rgba(0,0,0,0.38);
+            transform: rotate(-1deg);
         }
         .video-window img {
             width: 100%;
-            aspect-ratio: 4 / 5;
-            object-fit: cover;
+            height: 100%;
+            object-fit: contain;
+            background: #f8fafc;
         }
         .floating-card {
             position: absolute;
-            bottom: 20px;
             left: -18px;
-            padding: 1rem 1.1rem;
-            background: rgba(255,255,255,0.8);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            box-shadow: var(--shadow);
-        }
-        [data-theme="dark"] .floating-card {
-            background: rgba(15,23,42,0.8);
+            bottom: 18px;
+            padding: 0.9rem 1rem;
+            color: var(--text-main);
+            background: rgba(255,255,255,0.94);
+            border: 1px solid rgba(255,255,255,0.8);
+            border-radius: 6px;
+            box-shadow: 0 16px 38px rgba(0,0,0,0.28);
         }
         .floating-card strong {
             display: block;
-            margin-bottom: 4px;
-            color: var(--primary);
+            margin-bottom: 3px;
+            color: var(--primary-strong);
+        }
+        @media (max-width: 900px) {
+            .hero { min-height: auto; }
+            .hero-inner { grid-template-columns: 1fr; padding: 48px 0 56px; }
+            .hero h1 { font-size: clamp(2.7rem, 13vw, 4.8rem); }
+            .hero-visual { min-height: 300px; }
         }
 
         .section {
@@ -743,20 +762,16 @@
         <section id="beranda" class="hero">
             <div class="container hero-inner">
                 <div class="hero-copy">
-                    <div class="hero-main-logo">
-                        <img class="theme-logo-light" src="sph-kop.png" alt="SPH Online, Onglai Group" />
-                        <img class="theme-logo-dark" src="sph-kop-dark.png" alt="" aria-hidden="true" />
-                    </div>
-                    <div class="eyebrow">ServicePhoneHardware</div>
-                    <h1>Alat service HP terbaik untuk <span class="highlight">teknisi modern</span></h1>
+                    <div class="eyebrow">SPH Service Phonecell Hub</div>
+                    <h1>Bingung pilih alat?<br><span class="highlight">Konsultasi dulu, gratis.</span></h1>
                     <p>
-                        SPH hadir sebagai mitra terpercaya teknisi handphone dengan berbagai alat service profesional,
-                        peralatan kerja berkualitas, dan dukungan pengiriman ke seluruh Indonesia.
+                        Ceritakan kebutuhan reparasi Anda. Tim SPH membantu memilih alat, suku cadang,
+                        dan perlengkapan teknisi yang paling tepat.
                     </p>
 
                     <div class="actions">
-                        <a class="btn btn-primary" href="#katalog"><i class="fas fa-shopping-bag"></i> Lihat Produk</a>
-                        <a class="btn btn-secondary" href="#kontak"><i class="fas fa-map-marker-alt"></i> Kunjungi Toko</a>
+                        <a class="btn btn-primary" href="https://wa.me/message/UX5KWWIQ62UHC1" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Chat WhatsApp</a>
+                        <a class="btn btn-secondary" href="#katalog"><i class="fas fa-shopping-bag"></i> Lihat Produk</a>
                     </div>
 
                     <div class="hero-stats">
@@ -769,15 +784,15 @@
                             <span>Tahun pengalaman</span>
                         </div>
                         <div class="stat">
-                            <strong>24/7</strong>
-                            <span>Chat support</span>
+                            <strong>Surabaya</strong>
+                            <span>Jangkauan nasional</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="hero-visual">
                     <div class="video-window">
-                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=85" alt="Komponen elektronik untuk pekerjaan reparasi handphone" />
+                        <img src="z75.jpg" alt="Mikroskop layanan SPH untuk teknisi reparasi" />
                     </div>
                     <div class="floating-card">
                         <strong>Lokasi Toko</strong>
