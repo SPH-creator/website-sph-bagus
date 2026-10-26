@@ -573,6 +573,32 @@
             font-size: 0.9rem;
         }
 
+        .team-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
+        }
+        .team-gallery figure {
+            margin: 0;
+            overflow: hidden;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+        .team-gallery img {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            transition: transform 0.35s ease;
+        }
+        .team-gallery figure:hover img { transform: scale(1.025); }
+        @media (max-width: 900px) {
+            .team-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (max-width: 480px) {
+            .team-gallery { gap: 8px; }
+        }
+
         .customizer-btn {
             position: fixed;
             right: 24px;
@@ -940,6 +966,27 @@
                 <div class="map-actions">
                     <span>SPH Service Phonecell Hub, Surabaya</span>
                     <a class="map-link" href="https://www.google.com/maps/place/SPH+Service+Phonecell+Hub/@-7.2630653,112.7453618,17z/data=!3m2!4b1!5s0x2dd7f963cd4786df:0xa004af1effbbeae4!4m6!3m5!1s0x2dd7f97e1f8a1bbf:0x6850ab0596501df4!8m2!3d-7.2630706!4d112.7479367!16s%2Fg%2F11wxmv3b1s?hl=id&entry=ttu&g_ep=EgoyMDI2MTAxMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer"><i class="fas fa-directions" aria-hidden="true"></i> Buka petunjuk arah</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="team-heading">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="team-heading">Tim Kami</h2>
+                    <p>Kenali orang-orang di balik SPH yang mendukung kebutuhan teknisi di Surabaya dan seluruh Indonesia.</p>
+                </div>
+                <div class="team-gallery">
+                    <figure><img src="tim-sph-01.jpg" alt="Tim SPH 1" loading="lazy"></figure>
+                    <figure><img src="tim-sph-02.jpg" alt="Tim SPH 2" loading="lazy"></figure>
+                    <figure><img src="tim-sph-03.jpg" alt="Tim SPH 3" loading="lazy"></figure>
+                    <figure><img src="tim-sph-04.jpg" alt="Tim SPH 4" loading="lazy"></figure>
+                    <figure><img src="tim-sph-05.jpg" alt="Tim SPH 5" loading="lazy"></figure>
+                    <figure><img src="tim-sph-06.jpg" alt="Tim SPH 6" loading="lazy"></figure>
+                    <figure><img src="tim-sph-07.jpg" alt="Tim SPH 7" loading="lazy"></figure>
+                    <figure><img src="tim-sph-08.jpg" alt="Tim SPH 8" loading="lazy"></figure>
+                    <figure><img src="tim-sph-09.jpg" alt="Tim SPH 9" loading="lazy"></figure>
+                    <figure><img src="tim-sph-10.jpg" alt="Tim SPH 10" loading="lazy"></figure>
                 </div>
             </div>
         </section>
